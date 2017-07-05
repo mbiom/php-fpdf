@@ -1,7 +1,4 @@
 <?php
-	#include namespaces
-	include_once('../lib/db.class.php');
-	include('../lib/student.php');
 	require('../lib/fpdf181/fpdf.php');
 
 	class PDF extends fpdf
@@ -300,13 +297,6 @@
 			return $str;
 		}
 
-		function multiDots($spnum) {
-			$str = '';
-			for ($i = 0; $i < $spnum; $i++)
-				$str .= '.';
-			return $str;
-		}
-
 	}
 
 	
@@ -327,19 +317,6 @@
 		}
 		$smsObj->addMarkPage();
 		$pdf->Output();
-	}
-
-
-	//helper functions
-	function debug() {
-	    $trace = debug_backtrace();
-	    $rootPath = dirname(dirname(__FILE__));
-	    $file = str_replace($rootPath, '', $trace[0]['file']);
-	    $line = $trace[0]['line'];
-	    $var = $trace[0]['args'][0];
-	    $lineInfo = sprintf('<div><strong>%s</strong> (line <strong>%s</strong>)</div>', $file, $line);
-	    $debugInfo = sprintf('<pre>%s</pre>', print_r($var, true));
-	    print_r($lineInfo.$debugInfo);
 	}
 
 ?>
