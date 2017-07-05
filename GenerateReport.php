@@ -302,21 +302,11 @@
 	
 	$pdf = new PDF('P','mm','A4');
 
-	if( $_POST['Student'] == 0 ) {
-		$arrStudents = Student::GetStudentsNos( $_POST['Year'], $_POST['Program'] );
-		foreach ($arrStudents as $stdNo) {
-			$smsObj = new StudentMarkSheet($stdNo, $_POST['Year'], $pdf);
-			$smsObj->addMarkPage();
-		}
-		$pdf->Output();
-	}else {
-		$smsObj = new StudentMarkSheet($_POST['Student'], $_POST['Year'], $pdf);
-		if (!$smsObj->hasValidReport) {
-			echo $smsObj->frnConv("Votre bulletin de la période, semestre ou année n'est pas encore prêt");
-			return;
-		}
+	$arrStudents = Student::GetStudentsNos( $_POST['Year'], $_POST['Program'] );
+	foreach ($arrStudents as $stdNo) {
+		$smsObj = new StudentMarkSheet($stdNo, $_POST['Year'], $pdf);
 		$smsObj->addMarkPage();
-		$pdf->Output();
 	}
+	$pdf->Output();
 
 ?>
