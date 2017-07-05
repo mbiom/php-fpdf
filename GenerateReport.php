@@ -312,9 +312,6 @@
 	
 	$pdf = new PDF('P','mm','A4');
 
-	if( !(isset($_POST['Student'])) || !(isset($_POST['Year'])) || !(isset($_POST['Program'])) )
-		return;
-	
 	if( $_POST['Student'] == 0 ) {
 		$arrStudents = Student::GetStudentsNos( $_POST['Year'], $_POST['Program'] );
 		foreach ($arrStudents as $stdNo) {
